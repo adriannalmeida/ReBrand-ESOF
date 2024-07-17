@@ -1,0 +1,243 @@
+import 'package:AP1/pages/products.dart';
+import 'package:flutter/material.dart';
+import 'dart:ui';
+import 'package:AP1/colors.dart'; // Import your custom model file here
+import 'package:AP1/top_bar.dart'; // Corrected import path
+import 'package:flutter/animation.dart'; // Corrected import path
+
+class ProductDescription extends StatelessWidget {
+  final String name;
+  final String size;
+  final String price;
+  final String imageUrl;
+
+  ProductDescription({
+    required this.name,
+    required this.size,
+    required this.price,
+    required this.imageUrl,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.lightbeige,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Container(
+              width: double.infinity,
+              child: Stack(
+                alignment: AlignmentDirectional(0, -1),
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16),
+                      topLeft: Radius.circular(0),
+                      topRight: Radius.circular(0),
+                    ),
+                    expandedHeight:500.0,
+                    floating: false,
+                    pinned: true,
+                    flexibleSpace: FlexibleSpaceBar(
+                    background: Image.asset(
+                    imageUrl,
+                    fit: BoxFit.contain,
+                ),
+              ),
+                  
+                  ],);
+                  Align(
+                    alignment: AlignmentDirectional(0, 1),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 370, 0, 0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(0),
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(16),
+                          topRight: Radius.circular(16),
+                        ),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(
+                            sigmaX: 7,
+                            sigmaY: 2,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0x9AFFFFFF),
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(0),
+                                bottomRight: Radius.circular(0),
+                                topLeft: Radius.circular(16),
+                                topRight: Radius.circular(16),
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(12),
+                                  child: Container(
+                                    width: double.infinity,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 800,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 3,
+                                          color: Color(0x33000000),
+                                          offset: Offset(
+                                            0,
+                                            1,
+                                          ),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(12),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            name, // Use the provided name property
+                                        
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: 'Wooster St.',
+                                                      style: TextStyle(),
+                                                    ),
+                                                    TextSpan(
+                                                      text: ' || ',
+                                                      style: TextStyle(),
+                                                    ),
+                                                    TextSpan(
+                                                      text: '0.8 mi',
+                                                      style: TextStyle(),
+                                                    )
+                                                  ],
+                                              
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 32,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0x4C39D2C0),
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                ),
+                                                child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 12),
+                                                    child: Text(
+                                                      'Available',
+                                                    ),
+                                                    ),
+                                                  ),
+                                                ),
+                                      
+                                            ],
+                                          ),
+                                          Divider(
+                                            height: 16,
+                                            thickness: 1,
+                                            color: Color(0xFFE5E7EB),
+                                          ),
+                                          // Other details go here...
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/* NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight:500.0,
+              floating: false,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image.asset(
+                  imageUrl,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+          ];
+        },
+        body: Padding(
+          padding :const EdgeInsets.only(top:10.0),
+
+          child:ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Positioned(
+              right: 0.0,
+              top: 20.0,
+              child:Container(
+                height: 10,// Adjust the width as per your requirement
+                width: 5,
+                color: Colors.white,
+                /*child: Image.asset(
+                  '../ProductsImages/assets/rectancle.png',
+                  fit: BoxFit.cover,
+                ),*/
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(16.0),
+              margin: EdgeInsets.symmetric(horizontal: 16.0),
+              decoration: BoxDecoration(
+                color: AppColors.lightbeige,
+                borderRadius: BorderRadius.circular(50.0), // Make borders round here
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('Name: $name'),
+                  Text('Size: $size'),
+                  Text('Price: $price'),
+                  // Add more information here if needed
+                  // This container will expand to fit its content
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      )*/
